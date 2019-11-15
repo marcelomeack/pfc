@@ -8,4 +8,4 @@ const EnderecoSchema = new mongoose.Schema({
   bairro: String
 });
 
-module.exports = mongoose.model("Endereco", EnderecoSchema);
+module.exports = EnderecoSchema;

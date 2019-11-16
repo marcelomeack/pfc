@@ -6,7 +6,9 @@ const SessionController = require("./controllers/SessionController");
 const SpotController = require("./controllers/SpotController");
 const DashBoardController = require("./controllers/DashBoardController");
 const BookingController = require("./controllers/BookingController");
+//TCC
 const EnderecoController = require("./controllers/EnderecoController");
+const ProdutoController = require("./controllers/ProdutoController");
 
 const routes = express.Router();
 const upload = multer(uploadConfig);
@@ -24,5 +26,10 @@ routes.post("/endereco", EnderecoController.store);
 routes.get("/endereco", EnderecoController.get);
 routes.delete("/endereco", EnderecoController.delete);
 routes.put("/endereco", EnderecoController.update);
+
+routes.post("/produto", ProdutoController.store);
+routes.get("/produto", ProdutoController.get);
+routes.delete("/produto", ProdutoController.delete);
+routes.put("/produto", ProdutoController.update);
 
 module.exports = routes;

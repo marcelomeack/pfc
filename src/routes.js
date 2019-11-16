@@ -23,5 +23,6 @@ routes.post("/spots/:spot_id/bookings", BookingController.store);
 routes.post("/endereco", EnderecoController.store);
 routes.get("/endereco", EnderecoController.get);
 routes.delete("/endereco", EnderecoController.delete);
+routes.put("/endereco", EnderecoController.update);
 
 module.exports = routes;

@@ -11,4 +11,4 @@ const ClienteSchema = Pessoa.discriminator(
   }
 });
 
-module.exports = mongoose.model("Cliente", ClienteSchema);
+module.exports = ClienteSchema;

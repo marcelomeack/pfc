@@ -4,9 +4,11 @@ mongoose.set("useFindAndModify", false);
 
 module.exports = {
   async store(req, res) {
+    const { filename } = req.file;
     const { nome, valor, descricao } = req.body;
 
     const produto = await Produto.create({
+      thumbnail: filename,
       nome,
       valor,
       descricao

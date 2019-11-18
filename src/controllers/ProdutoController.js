@@ -17,9 +17,9 @@ module.exports = {
   },
 
   async get(req, res) {
-    const { nome } = req.query;
+    // const { nome } = req.query;
 
-    const produto = await Produto.find({ nome: nome });
+    const produto = await Produto.find({ produto: Produto });
 
     return res.json(produto);
   },

@@ -10,6 +10,14 @@ produtoSchema.statics = {
     this.find(query, cb);
   },
 
+  getAll: function(query, cb) {
+    this.find(query, cb);
+  },
+
+  getById: function(query, cb) {
+    this.find(query, cb);
+  },
+
   getByName: function(query, cb) {
     this.find(query, cb);
   },

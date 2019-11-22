@@ -28,8 +28,9 @@ routes.delete("/endereco", EnderecoController.delete);
 routes.put("/endereco", EnderecoController.update);
 
 routes.post("/produto", upload.single("thumbnail"), ProdutoController.store);
-routes.get("/produto", ProdutoController.get);
-routes.delete("/produto", ProdutoController.delete);
-routes.put("/produto", ProdutoController.update);
+routes.get("/produto", ProdutoController.getAll);
+routes.put("/produto/:_id", ProdutoController.update);
+routes.get("/produtoId", ProdutoController.getById);
+routes.delete("/produtoId/:_id", ProdutoController.deleteById);
 
 module.exports = routes;

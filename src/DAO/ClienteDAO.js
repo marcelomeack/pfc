@@ -6,7 +6,7 @@ clienteSchema.statics = {
     const cliente = new this(data);
     cliente.save(cb);
   },
-  get: function(query, cb) {
+  getAll: function(query, cb) {
     this.find(query, cb);
   },
 

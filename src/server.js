@@ -13,7 +13,7 @@ mongoose.connect(
   }
 );
 
-// req.query.parms = acessar query params (para filtros)
+// req.query.params = acessar query params (para filtros)
 // req.params = acessar route params (para edição, delete) através de id por exemplo
 // req.body = acessar corpo da requisição (criação edição)
 

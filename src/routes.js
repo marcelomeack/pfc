@@ -23,8 +23,9 @@ routes.post("/spots/:spot_id/bookings", BookingController.store);
 
 //TCC
 routes.post("/endereco", EnderecoController.store);
-routes.get("/endereco", EnderecoController.get);
-routes.delete("/endereco", EnderecoController.delete);
+routes.post("/endereco", EnderecoController.getAll);
+routes.get("/endereco", EnderecoController.getById);
+routes.delete("/endereco", EnderecoController.deleteById);
 routes.put("/endereco", EnderecoController.update);
 
 routes.post("/produto", upload.single("thumbnail"), ProdutoController.store);

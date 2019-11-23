@@ -3,14 +3,15 @@ const clienteSchema = require("../models/cliente");
 
 clienteSchema.statics = {
   store: function(data, cb) {
-    const cliente = new this(data);
-    cliente.save(cb);
+    const produto = new this(data);
+    produto.save(cb);
   },
+
   getAll: function(query, cb) {
     this.find(query, cb);
   },
 
-  getByName: function(query, cb) {
+  getById: function(query, cb) {
     this.find(query, cb);
   },
 
@@ -18,7 +19,7 @@ clienteSchema.statics = {
     this.findOneAndUpdate(query, { $set: updateData }, { new: true }, cb);
   },
 
-  delete: function(query, cb) {
+  deleteById: function(query, cb) {
     this.findOneAndDelete(query, cb);
   }
 };

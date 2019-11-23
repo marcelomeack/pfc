@@ -16,20 +16,24 @@ module.exports = {
     return res.json(endereco);
   },
 
-  async get(req, res) {
-    const { rua } = req.query;
+  async getAll(req, res) {
+    const produto = await Produto.find({ produto: Produto });
 
-    const endereco = await Endereco.find({ rua: rua });
-
-    return res.json(endereco);
+    return res.json(produto);
   },
 
-  async delete(req, res) {
+  async getById(req, res) {
     const { _id } = req.headers;
 
-    let endereco = await Endereco.findOne({ endereco: _id });
+    let endereco = await Produto.findOne({ _id: _id });
 
-    endereco = await Endereco.deleteOne({ endereco });
+    return res.json(Endereco);
+  },
+
+  async deleteById(req, res) {
+    const { _id } = req.params;
+
+    endereco = await Endereco.findByIdAndDelete(_id, {});
 
     return res.json(endereco);
   },

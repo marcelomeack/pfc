@@ -8,10 +8,10 @@ module.exports = {
   async login(req, res) {
     const { email, senha } = req.body;
 
-    let emailValido = await Cliente.findOne({ email });
-    if (!emailValido) return res.status(400).send("Email não cadastrado");
+    let validacao = await Cliente.findOne({ email: email });
+    if (!validacao) return res.status(400).send("Email não cadastrado");
 
-    let senhaValida = await bcrypt.compare(senha, cliente.senha);
+    let senhaValida = await bcrypt.compare(senha, validacao.senha);
     if (!senhaValida) return res.status(400).send("Senha Incorreta");
 
     const token = jwt.sign({ _id: Cliente._id }, process.env.TOKEN_SECRET);

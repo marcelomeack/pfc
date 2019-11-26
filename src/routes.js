@@ -41,6 +41,5 @@ routes.delete("/produtoId/:_id", ProdutoController.deleteById);
 routes.post("/sessao", SessaoController.login);
 
 routes.post("/cliente", ClienteController.store);
-routes.post("/login", ClienteController.login);
 
 module.exports = routes;

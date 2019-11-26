@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const clienteSchema = require("../models/cliente");
+const clienteSchema = require("../models/Cliente");
 
 clienteSchema.statics = {
   store: function(data, cb) {
@@ -24,4 +24,4 @@ clienteSchema.statics = {
   }
 };
 
-module.exports = mongoose.model("Cliente", clienteSchema);
+// module.exports = mongoose.model("Cliente", clienteSchema);

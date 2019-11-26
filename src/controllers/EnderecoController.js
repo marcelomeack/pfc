@@ -1,5 +1,7 @@
 const Endereco = require("../DAO/EnderecoDAO");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const Token = require("../Token");
 mongoose.set("useFindAndModify", false);
 
 module.exports = {
@@ -16,16 +18,16 @@ module.exports = {
     return res.json(endereco);
   },
 
-  async getAll(req, res) {
-    const produto = await Produto.find({ produto: Produto });
+  async getAll(req, res, next) {
+    const endereco = await Endereco.find({ endereco: Endereco });
 
-    return res.json(produto);
+    return res.json(endereco);
   },
 
   async getById(req, res) {
     const { _id } = req.headers;
 
-    let endereco = await Produto.findOne({ _id: _id });
+    let endereco = await Endereco.findOne({ _id: _id });
 
     return res.json(Endereco);
   },

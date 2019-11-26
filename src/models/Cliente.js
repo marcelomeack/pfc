@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
-const Pessoa = require("./Pessoa");
+const PessoaSchema = require("./Pessoa");
 
-const ClienteSchema = Pessoa.discriminator(
+const ClienteSchema = PessoaSchema.discriminator(
   "ClienteSchema",
-  new mongoose.Schema()
-)({
-  codCliente: {
-    type: Schema.ObjectId,
-    auto: true
-  }
-});
+  new mongoose.Schema({
+    senha: String
+  })
+);
 
-module.exports = ClienteSchema;
+module.exports = mongoose.model("ClienteSchema");
+// module.exports = ClienteSchema;

@@ -2,3 +2,10 @@ src/controllers/BookingController.js
 src/controllers/DashBoardController.js
 src/controllers/SpotController.js
 src/controllers/SessionController.js
+
+node_modules
+.nyc_output/
+coverage/
+npm-debug.log
+package-lock.json
+test/*.log

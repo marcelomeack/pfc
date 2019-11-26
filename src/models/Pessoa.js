@@ -1,22 +1,28 @@
 const mongoose = require("mongoose");
 
-const pessoa = {
-  discriminatorKey: "pessoa",
-  collection: "pessoas"
+const baseOptions = {
+  discriminatorKey: "itemtype",
+  collection: "items"
 };
 
-const PessoaSchema = new mongoose.Schema({
-  nome: String,
-  cpf: String,
-  telefone: String,
-  sexo: String,
-  endereco: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Endereco"
-  },
-  email: String,
-  dataNascimento: Date,
-  pessoa
-});
+const PessoaSchema = mongoose.model(
+  "PessoaSchema",
+  new mongoose.Schema(
+    {
+      nome: String,
+      cpf: String,
+      telefone: String,
+      sexo: String,
+      endereco: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Endereco"
+      },
+      email: String,
+      dataNascimento: Date
+    },
+    baseOptions
+  )
+);
 
-module.exports = mogoose.model("Pessoa", PessoaSchema);
+module.exports = mongoose.model("PessoaSchema");
+// module.exports = PessoaSchema;

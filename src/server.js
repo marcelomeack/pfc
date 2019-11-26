@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const routes = require("./routes");
+const dotenv = require("dotenv");
 const app = express();
 
-mongoose.connect(
-  "mongodb+srv://marcelo:marcelo@omni-nod4w.mongodb.net/teste?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+dotenv.config();
+
+mongoose.connect(process.env.DB_CONNECT, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // req.query.params = acessar query params (para filtros)
 // req.params = acessar route params (para edição, delete) através de id por exemplo

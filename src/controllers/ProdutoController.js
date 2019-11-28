@@ -34,7 +34,7 @@ module.exports = {
   async deleteById(req, res) {
     const { _id } = req.params;
 
-    produto = await Produto.findByIdAndDelete(_id, {});
+    const produto = await Produto.findByIdAndDelete(_id, {});
 
     return res.json(produto);
   },

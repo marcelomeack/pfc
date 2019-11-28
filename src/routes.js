@@ -11,19 +11,20 @@ const EnderecoController = require("./controllers/EnderecoController");
 const ProdutoController = require("./controllers/ProdutoController");
 const ClienteController = require("./controllers/ClienteController");
 const SessaoController = require("./controllers/SessaoController");
+const AdministradorController = require("./controllers/AdministradorController");
 
 const Token = require("./Token");
 
 const routes = express.Router();
 const upload = multer(uploadConfig);
 
-routes.post("/sessions", SessionController.store);
-routes.delete("/sessions", SessionController.delete);
-routes.post("/spots", upload.single("thumbnail"), SpotController.store);
-routes.delete("/spots", SpotController.delete);
-routes.get("/spots", SpotController.index);
-routes.get("/dashboard", DashBoardController.show);
-routes.post("/spots/:spot_id/bookings", BookingController.store);
+// routes.post("/sessions", SessionController.store);
+// routes.delete("/sessions", SessionController.delete);
+// routes.post("/spots", upload.single("thumbnail"), SpotController.store);
+// routes.delete("/spots", SpotController.delete);
+// routes.get("/spots", SpotController.index);
+// routes.get("/dashboard", DashBoardController.show);
+// routes.post("/spots/:spot_id/bookings", BookingController.store);
 
 //TCC
 routes.post("/endereco", EnderecoController.store);
@@ -38,8 +39,14 @@ routes.put("/produto/:_id", ProdutoController.update);
 routes.get("/produtoId", ProdutoController.getById);
 routes.delete("/produtoId/:_id", ProdutoController.deleteById);
 
-routes.post("/sessao", SessaoController.login);
-
 routes.post("/cliente", ClienteController.store);
+routes.get("/cliente", ClienteController.getAll);
+routes.put("/cliente/:_id", ClienteController.update);
+routes.post("/clienteId", ClienteController.getById);
+routes.delete("/clienteId/:_id", ClienteController.deleteById);
+
+routes.post("/Administrador", AdministradorController.store);
+
+routes.post("/sessao", SessaoController.login);
 
 module.exports = routes;

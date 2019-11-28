@@ -37,8 +37,8 @@ module.exports = {
     return res.json(cliente);
   },
 
-  async getAll(res) {
-    const cliente = await Cliente.find({ usuario: usuario });
+  async getAll(req, res) {
+    const cliente = await Cliente.find({ cliente: Cliente });
 
     return res.json(cliente);
   },
@@ -54,14 +54,25 @@ module.exports = {
   async deleteById(req, res) {
     const { _id } = req.params;
 
-    cliente = await Cliente.findByIdAndDelete(_id);
+    const cliente = await Cliente.findByIdAndDelete(_id, {});
 
     return res.json(cliente);
   },
 
   async update(req, res) {
     const { _id } = req.params;
-    const { nome, cpf, telefone, sexo, endereco } = req.body;
+    const {
+      nome,
+      cpf,
+      telefone,
+      sexo,
+      email,
+      dataNascimento,
+      senha
+    } = req.body;
+
+    const salt = await bcrypt.genSalt(10);
+    const senhaCriptografada = await bcrypt.hash(senha, salt);
 
     const cliente = await Cliente.findByIdAndUpdate(
       _id,
@@ -70,15 +81,17 @@ module.exports = {
         cpf,
         telefone,
         sexo,
-        endereco
+        email,
+        dataNascimento,
+        senha: senhaCriptografada
       },
       { new: true }
     );
 
     if (!cliente) {
-      return res.status(400).json({ error: "Produto inexistente" });
+      return res.status(400).json({ error: "Cliente inexistente" });
     } else {
-      return res.json(produto);
+      return res.json(cliente);
     }
   }
 };

@@ -25,4 +25,3 @@ const PessoaSchema = mongoose.model(
 );
 
 module.exports = mongoose.model("PessoaSchema");
-// module.exports = PessoaSchema;

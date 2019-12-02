@@ -10,7 +10,8 @@ const FuncionarioSchema = Pessoa.discriminator(
     auto: true
   },
   cargo: String,
-  funcao: String
+  funcao: String,
+  senha: String
 });
 
 module.exports = mongoose.model("Funcionario", FuncionarioSchema);

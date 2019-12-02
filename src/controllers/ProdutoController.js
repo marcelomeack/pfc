@@ -17,7 +17,6 @@ module.exports = {
   },
 
   async getAll(req, res) {
-    // const { token } = req.headers;
     const produto = await Produto.find({ produto: Produto });
 
     return res.json(produto);

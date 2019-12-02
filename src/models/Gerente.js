@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const PessoaSchema = require("./Pessoa");
 
-const AdministradorSchema = PessoaSchema.discriminator(
-  "AdministradorSchema",
+const GerenteSchema = PessoaSchema.discriminator(
+  "GerenteSchema",
   new mongoose.Schema({
     senha: String
   })
 );
 
-module.exports = mongoose.model("AdministradorSchema");
+module.exports = mongoose.model("GerenteSchema");
 // module.exports = ClienteSchema;

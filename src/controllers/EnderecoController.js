@@ -18,7 +18,7 @@ module.exports = {
     return res.json(endereco);
   },
 
-  async getAll(req, res, next) {
+  async getAll(res) {
     const endereco = await Endereco.find({ endereco: Endereco });
 
     return res.json(endereco);
@@ -27,7 +27,7 @@ module.exports = {
   async getById(req, res) {
     const { _id } = req.headers;
 
-    let endereco = await Endereco.findOne({ _id: _id });
+    await Endereco.findOne({ _id: _id });
 
     return res.json(Endereco);
   },

@@ -1,5 +1,5 @@
 // const Cliente = require("../DAO/ClienteDAO");
-const Cliente = require("../models/Administrador");
+// const Cliente = require("../models/Administrador");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");

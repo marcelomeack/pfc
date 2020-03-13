@@ -3,9 +3,11 @@ src/controllers/DashBoardController.js
 src/controllers/SpotController.js
 src/controllers/SessionController.js
 
+.npmignore
 node_modules
 .nyc_output/
 coverage/
 npm-debug.log
 package-lock.json
 test/*.log
+package.json

@@ -5,12 +5,13 @@ mongoose.set("useFindAndModify", false);
 module.exports = {
   async store(req, res) {
     const { filename } = req.file;
-    const { nome, valor, descricao } = req.body;
+    const { nome, valor, quantidade, descricao } = req.body;
 
     const produto = await Produto.create({
       thumbnail: filename,
       nome,
       valor,
+      quantidade,
       descricao
     });
     return res.json(produto);
@@ -30,6 +31,12 @@ module.exports = {
     return res.json(produto);
   },
 
+  async getLess(req, res) {
+    const produto = await Produto.find({ quantidade: { $lt: 4 } });
+
+    return res.json(produto);
+  },
+
   async deleteById(req, res) {
     const { _id } = req.params;
 
@@ -40,13 +47,14 @@ module.exports = {
 
   async update(req, res) {
     const { _id } = req.params;
-    const { nome, valor, descricao } = req.body;
+    const { nome, valor, quantidade, descricao } = req.body;
 
     const produto = await Produto.findByIdAndUpdate(
       _id,
       {
         nome,
         valor,
+        quantidade,
         descricao
       },
       { new: true }

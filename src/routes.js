@@ -12,6 +12,7 @@ const ProdutoController = require("./controllers/ProdutoController");
 const ClienteController = require("./controllers/ClienteController");
 const SessaoController = require("./controllers/SessaoController");
 const AdministradorController = require("./controllers/AdministradorController");
+const PdfController = require("./controllers/PdfController");
 
 const Token = require("./Token");
 
@@ -38,12 +39,16 @@ routes.get("/produto", Token, ProdutoController.getAll);
 routes.put("/produto/:_id", ProdutoController.update);
 routes.get("/produtoId", ProdutoController.getById);
 routes.delete("/produtoId/:_id", ProdutoController.deleteById);
+routes.get("/produtoLess", ProdutoController.getLess);
 
 routes.post("/cliente", ClienteController.store);
 routes.get("/cliente", ClienteController.getAll);
 routes.put("/cliente/:_id", ClienteController.update);
 routes.post("/clienteId", ClienteController.getById);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
+
+routes.post("/pdf", PdfController.store);
+routes.get("/pdf", PdfController.get);
 
 routes.post("/Administrador", AdministradorController.store);
 

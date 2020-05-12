@@ -2,6 +2,7 @@ src/controllers/BookingController.js
 src/controllers/DashBoardController.js
 src/controllers/SpotController.js
 src/controllers/SessionController.js
+uploads/
 
 .npmignore
 node_modules
@@ -11,4 +12,8 @@ npm-debug.log
 package-lock.json
 test/*.log
 package.json
-yarn.lock
+yarn.lock 
+build
+npm-debug.log
+.env
+.DS_Store

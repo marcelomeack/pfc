@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-// const Cliente = require("../models/Cliente");
 
 module.exports = function auto(req, res, next) {
   const token = req.header("tokenAut");

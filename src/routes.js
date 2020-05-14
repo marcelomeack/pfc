@@ -49,6 +49,7 @@ routes.delete("/clienteId/:_id", ClienteController.deleteById);
 
 routes.post("/pdf", PdfController.store);
 routes.get("/pdf", PdfController.get);
+routes.post("/pdfEmail", PdfController.sendEmail);
 
 routes.post("/Administrador", AdministradorController.store);
 

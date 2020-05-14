@@ -1,27 +1,9 @@
-const Produto = require("../DAO/ProdutoDAO");
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
-module.exports = () => {
+module.exports = produtos => {
   const today = new Date();
 
-  // const [produtos, setprodutos] = [];
-  // () => {
-  //   async function loadprodutos() {
-  //     const response = await api.get("/pdf", {});
-  //     setprodutos(response.data);
-  //   }
-  //   loadprodutos();
-  // },
-  //   [];
-  //  ${produtos.map(produto => (
-  //    <li key={produto._id}>
-  //      <strong>{produto.nome}</strong>
-  //      <br />
-  //      <span text-align="justify">{produto.quantidade}</span>
-  //      <br />
-  //    </li>
-  //  ))}
   return `
   <!doctype html>
   <html>
@@ -131,19 +113,20 @@ module.exports = () => {
           <td>Produtos:</td>
           <td>Quantidade:</td>
         </tr>
+     
+      ${produtos.map(
+        produto => `
         <tr class="item">
-          <td>First item:</td>
-          <ul className="produto-list">
-        
-      </ul>
-          <td>${produtos}</td>
-        </tr>
-        <tr class="item">
-          <td>Second item:</td>
-          <td>${price2}$</td>
-        </tr>
+        <td>${produto.nome}</td>
+        <ul className="produto-list">
+    </ul>
+      <td>${produto.quantidade}</td>
+      </tr>
+      <tr class="item">
+    </tr>
+    `
+      )}     
       </table>
-
       <br />
     </div>
   </body>

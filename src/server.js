@@ -5,6 +5,8 @@ const path = require("path");
 const routes = require("./routes");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const cron = require("node-cron");
+const mailer = require("./services/mailer");
 
 const app = express();
 
@@ -29,5 +31,26 @@ app.use(
 app.use(bodyParser.json());
 app.use("/files", express.static(path.resolve(__dirname, "..", "uploads")));
 app.use(routes);
+
+cron.schedule("* 17 15 * *", () => {
+  let mailOptions = {
+    from: "pfc.ecommerce.umc@gmail.com",
+    to: "marcelomeack@gmail.com, Vitor@suzulan.com.br",
+    subject: "Importante! Relatório de Estoque Mensal",
+    text: "Segue em anexo relatório de produtos abaixo do estoque",
+    attachments: [
+      {
+        path: path.resolve(__dirname, "../result.pdf"),
+        contentType: "application/pdf"
+      }
+    ]
+  };
+  mailer.sendMail(mailOptions, (err, data) => {
+    if (err) {
+      console.log("erro");
+    }
+    console.log("email enviado");
+  });
+});
 
 app.listen(3333);

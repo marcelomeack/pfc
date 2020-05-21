@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use("/files", express.static(path.resolve(__dirname, "..", "uploads")));
 app.use(routes);
 
-cron.schedule("* 17 15 * *", () => {
+cron.schedule("* 17 20 * *", () => {
   let mailOptions = {
     from: "pfc.ecommerce.umc@gmail.com",
     to: "marcelomeack@gmail.com, Vitor@suzulan.com.br",

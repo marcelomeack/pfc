@@ -7,7 +7,9 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cron = require("node-cron");
 const mailer = require("./services/mailer");
-
+const pdf = require("html-pdf");
+const pdfTemplate = require("./documents/LessProd");
+const Produto = require("./DAO/ProdutoDAO");
 const app = express();
 
 dotenv.config();
@@ -32,7 +34,15 @@ app.use(bodyParser.json());
 app.use("/files", express.static(path.resolve(__dirname, "..", "uploads")));
 app.use(routes);
 
-cron.schedule("* 17 20 * *", () => {
+cron.schedule("* 17 20 * *", async (req, res) => {
+  const produtos = await Produto.find({ quantidade: { $lt: 4 } });
+  pdf.create(pdfTemplate(produtos), {}).toFile("result.pdf", err => {
+    if (err) {
+      console.log("erro");
+    }
+    console.log("PDF GERADO");
+  });
+
   let mailOptions = {
     from: "pfc.ecommerce.umc@gmail.com",
     to: "marcelomeack@gmail.com, Vitor@suzulan.com.br",
@@ -45,7 +55,7 @@ cron.schedule("* 17 20 * *", () => {
       }
     ]
   };
-  mailer.sendMail(mailOptions, (err, data) => {
+  await mailer.sendMail(mailOptions, (err, data) => {
     if (err) {
       console.log("erro");
     }

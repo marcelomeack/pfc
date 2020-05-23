@@ -18,3 +18,5 @@ npm-debug.log
 .env
 .DS_Store
 result.pdf
+estoque.pdf
+faturamento.pdf

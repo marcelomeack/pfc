@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const cron = require("node-cron");
 const mailer = require("./services/mailer");
 const pdf = require("html-pdf");
-const pdfTemplate = require("./documents/LessProd");
+const estoquePdfTemplate = require("./documents/Faturamento");
 const Produto = require("./DAO/ProdutoDAO");
 const app = express();
 
@@ -36,7 +36,7 @@ app.use(routes);
 
 cron.schedule("* 17 20 * *", async (req, res) => {
   const produtos = await Produto.find({ quantidade: { $lt: 4 } });
-  pdf.create(pdfTemplate(produtos), {}).toFile("result.pdf", err => {
+  pdf.create(estoquePdfTemplate(produtos), {}).toFile("estoque.pdf", err => {
     if (err) {
       console.log("erro");
     }
@@ -50,7 +50,7 @@ cron.schedule("* 17 20 * *", async (req, res) => {
     text: "Segue em anexo relatório de produtos abaixo do estoque",
     attachments: [
       {
-        path: path.resolve(__dirname, "../result.pdf"),
+        path: path.resolve(__dirname, "../estoque.pdf"),
         contentType: "application/pdf"
       }
     ]

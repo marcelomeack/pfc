@@ -65,5 +65,21 @@ module.exports = {
     } else {
       return res.json(produto);
     }
+  },
+
+  async sum(req, res) {
+    const produto = await Produto.aggregate([
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: {
+              $multiply: ["$valor", "$quantidade"]
+            }
+          }
+        }
+      }
+    ]);
+    return res.json(produto);
   }
 };

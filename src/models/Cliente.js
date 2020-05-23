@@ -9,4 +9,3 @@ const ClienteSchema = PessoaSchema.discriminator(
 );
 
 module.exports = mongoose.model("ClienteSchema");
-// module.exports = ClienteSchema;

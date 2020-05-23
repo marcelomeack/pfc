@@ -1,33 +1,17 @@
 const express = require("express");
 const multer = require("multer");
 const uploadConfig = require("./config/upload");
+const routes = express.Router();
+const upload = multer(uploadConfig);
+const Token = require("./Token");
 
-const SessionController = require("./controllers/SessionController");
-const SpotController = require("./controllers/SpotController");
-const DashBoardController = require("./controllers/DashBoardController");
-const BookingController = require("./controllers/BookingController");
-//TCC
 const EnderecoController = require("./controllers/EnderecoController");
 const ProdutoController = require("./controllers/ProdutoController");
 const ClienteController = require("./controllers/ClienteController");
 const SessaoController = require("./controllers/SessaoController");
 const AdministradorController = require("./controllers/AdministradorController");
-const PdfController = require("./controllers/PdfController");
+const RelatorioController = require("./controllers/RelatorioController");
 
-const Token = require("./Token");
-
-const routes = express.Router();
-const upload = multer(uploadConfig);
-
-// routes.post("/sessions", SessionController.store);
-// routes.delete("/sessions", SessionController.delete);
-// routes.post("/spots", upload.single("thumbnail"), SpotController.store);
-// routes.delete("/spots", SpotController.delete);
-// routes.get("/spots", SpotController.index);
-// routes.get("/dashboard", DashBoardController.show);
-// routes.post("/spots/:spot_id/bookings", BookingController.store);
-
-//TCC
 routes.post("/endereco", EnderecoController.store);
 routes.get("/endereco", EnderecoController.getAll);
 routes.put("/endereco/:_id", EnderecoController.update);
@@ -47,12 +31,16 @@ routes.put("/cliente/:_id", ClienteController.update);
 routes.post("/clienteId", ClienteController.getById);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
 
-routes.post("/pdf", PdfController.store);
-routes.get("/pdf", PdfController.get);
-routes.post("/pdfEmail", PdfController.sendEmail);
+routes.post("/relatorioEstoque", RelatorioController.estoquePdf);
+routes.get("/getRelatorioEstoque", RelatorioController.getEstoquePdf);
+routes.post("/pdfEmail", RelatorioController.sendEmail);
+routes.post("/relatorioFaturamento", RelatorioController.faturamentoPdf);
+routes.get("/getRelatorioFaturamento", RelatorioController.getFaturamentoPdf);
 
 routes.post("/Administrador", AdministradorController.store);
 
 routes.post("/sessao", SessaoController.login);
+
+routes.get("/sum", ProdutoController.sum);
 
 module.exports = routes;

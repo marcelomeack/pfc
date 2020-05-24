@@ -24,6 +24,9 @@ routes.put("/produto/:_id", ProdutoController.update);
 routes.get("/produtoId", ProdutoController.getById);
 routes.delete("/produtoId/:_id", ProdutoController.deleteById);
 routes.get("/produtoLess", ProdutoController.getLess);
+routes.get("/produtoLoja", ProdutoController.getStore);
+
+routes.get("/loja", ProdutoController.getAll);
 
 routes.post("/cliente", ClienteController.store);
 routes.get("/cliente", ClienteController.getAll);

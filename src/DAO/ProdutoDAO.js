@@ -21,6 +21,10 @@ produtoSchema.statics = {
 
   deleteById: function(query, cb) {
     this.findOneAndDelete(query, cb);
+  },
+
+  getLess: function(query, cb) {
+    this.find(query, cb);
   }
 };
 

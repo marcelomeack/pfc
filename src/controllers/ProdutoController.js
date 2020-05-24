@@ -37,6 +37,12 @@ module.exports = {
     return res.json(produto);
   },
 
+  async getStore(req, res) {
+    const produto = await Produto.find({ quantidade: { $gt: 0 } });
+
+    return res.json(produto);
+  },
+
   async deleteById(req, res) {
     const { _id } = req.params;
 

@@ -30,7 +30,7 @@ routes.get("/loja", ProdutoController.getAll);
 
 routes.post("/cliente", ClienteController.store);
 routes.get("/cliente", ClienteController.getAll);
-routes.put("/cliente/:_id", ClienteController.update);
+routes.put("/cliente/:_id/:endereco", ClienteController.update);
 routes.post("/clienteId", ClienteController.getById);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
 

@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const cron = require("node-cron");
 const mailer = require("./services/mailer");
 const pdf = require("html-pdf");
-const estoquePdfTemplate = require("./documents/Faturamento");
+const estoquePdfTemplate = require("./documents/Estoque");
 const Produto = require("./DAO/ProdutoDAO");
 const app = express();
 
@@ -34,14 +34,16 @@ app.use(bodyParser.json());
 app.use("/files", express.static(path.resolve(__dirname, "..", "uploads")));
 app.use(routes);
 
-cron.schedule("* 17 20 * *", async (req, res) => {
+cron.schedule(" * 15 20 * *", async (req, res) => {
   const produtos = await Produto.find({ quantidade: { $lt: 4 } });
-  pdf.create(estoquePdfTemplate(produtos), {}).toFile("estoque.pdf", err => {
-    if (err) {
-      console.log("erro");
-    }
-    console.log("PDF GERADO");
-  });
+  await pdf
+    .create(estoquePdfTemplate(produtos), {})
+    .toFile("estoque.pdf", err => {
+      if (err) {
+        console.log("erro");
+      }
+      console.log("PDF GERADO");
+    });
 
   let mailOptions = {
     from: "pfc.ecommerce.umc@gmail.com",

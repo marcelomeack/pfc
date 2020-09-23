@@ -24,7 +24,7 @@
     "mongoose": "^5.7.3",
     "multer": "^1.4.2",
     "node-cron": "^2.0.3",
-    "nodemailer": "^6.4.6",
+    "nodemailer": "^6.4.11",
     "supertest": "^4.0.2"
   },
   "devDependencies": {

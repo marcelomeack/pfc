@@ -6,17 +6,13 @@ const PedidoSchema = new mongoose.Schema({
     default: Date.now
   },
   valorTotal: Number,
-  observacao: String,
-  itemPedido: [
+  itemPedidos: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "itemPedido"
+      type: mongoose.Schema.Types.Array,
+      ref: "Produto",
+      required: true
     }
   ],
-  pagamento: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Pagamento"
-  },
   cliente: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Cliente"

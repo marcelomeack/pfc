@@ -34,13 +34,13 @@ app.use(bodyParser.json());
 app.use("/files", express.static(path.resolve(__dirname, "..", "uploads")));
 app.use(routes);
 
-cron.schedule(" * 15 20 * *", async (req, res) => {
+cron.schedule("* * * 25 * *", async (req, res) => {
   const produtos = await Produto.find({ quantidade: { $lt: 4 } });
   await pdf
     .create(estoquePdfTemplate(produtos), {})
     .toFile("estoque.pdf", err => {
       if (err) {
-        console.log("erro");
+        console.log("PDF NAO GERADO ERRO");
       }
       console.log("PDF GERADO");
     });
@@ -59,7 +59,7 @@ cron.schedule(" * 15 20 * *", async (req, res) => {
   };
   await mailer.sendMail(mailOptions, (err, data) => {
     if (err) {
-      console.log("erro");
+      console.log("EMAIL NAO ENVIADO");
     }
     console.log("email enviado");
   });

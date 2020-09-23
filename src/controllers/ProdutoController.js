@@ -73,6 +73,22 @@ module.exports = {
     }
   },
 
+  async updateQt(req, res) {
+    const { _id, quantidade } = req.body;
+
+    const produto = await Produto.findByIdAndUpdate(_id, {
+      $inc: {
+        quantidade: -quantidade
+      }
+    });
+
+    if (!produto) {
+      return res.status(400).json({ error: "Produto inexistente" });
+    } else {
+      return res.json(produto);
+    }
+  },
+
   async sum(req, res) {
     const produto = await Produto.aggregate([
       {

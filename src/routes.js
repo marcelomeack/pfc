@@ -11,6 +11,7 @@ const ClienteController = require("./controllers/ClienteController");
 const SessaoController = require("./controllers/SessaoController");
 const AdministradorController = require("./controllers/AdministradorController");
 const RelatorioController = require("./controllers/RelatorioController");
+const PedidoController = require("./controllers/PedidoController");
 
 routes.post("/endereco", EnderecoController.store);
 routes.get("/endereco", EnderecoController.getAll);
@@ -21,6 +22,7 @@ routes.delete("/enderecoId/:_id", EnderecoController.deleteById);
 routes.post("/produto", upload.single("thumbnail"), ProdutoController.store);
 routes.get("/produto", Token, ProdutoController.getAll);
 routes.put("/produto/:_id", ProdutoController.update);
+routes.put("/produtoQt", ProdutoController.updateQt);
 routes.get("/produtoId", ProdutoController.getById);
 routes.delete("/produtoId/:_id", ProdutoController.deleteById);
 routes.get("/produtoLess", ProdutoController.getLess);
@@ -39,6 +41,10 @@ routes.get("/getRelatorioEstoque", RelatorioController.getEstoquePdf);
 routes.post("/pdfEmail", RelatorioController.sendEmail);
 routes.post("/relatorioFaturamento", RelatorioController.faturamentoPdf);
 routes.get("/getRelatorioFaturamento", RelatorioController.getFaturamentoPdf);
+
+routes.post("/pedido", PedidoController.store);
+routes.get("/pedido", PedidoController.getAll);
+routes.delete("/pedidoId/:_id", PedidoController.deleteById);
 
 routes.post("/Administrador", AdministradorController.store);
 

@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Produto = require("../DAO/ProdutoDAO");
 const mailer = require("../services/mailer");
+const Pedido = require("../models/Pedido");
 mongoose.set("useFindAndModify", false);
 
 module.exports = {
@@ -25,20 +26,20 @@ module.exports = {
   },
 
   async faturamentoPdf(req, res) {
-    const produtos = await Produto.aggregate([
+    const pedidos = await Pedido.aggregate([
       {
         $group: {
           _id: null,
           total: {
             $sum: {
-              $multiply: ["$valor", "$quantidade"]
+              $multiply: ["$valorTotal"]
             }
           }
         }
       }
     ]);
     pdf
-      .create(faturamentoPdfTemplate(produtos), {})
+      .create(faturamentoPdfTemplate(pedidos), {})
       .toFile("faturamento.pdf", err => {
         if (err) {
           res.send(Promise.reject());

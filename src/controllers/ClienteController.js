@@ -44,9 +44,9 @@ module.exports = {
   },
 
   async getById(req, res) {
-    const { _id } = req.headers;
+    const { email } = req.headers;
 
-    let cliente = await Cliente.findOne({ _id: _id });
+    let cliente = await Cliente.findOne({ email: email });
 
     return res.json(cliente);
   },

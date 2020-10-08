@@ -1,5 +1,4 @@
-// const Cliente = require("../DAO/ClienteDAO");
-// const Cliente = require("../models/Administrador");
+const Administrador = require("../models/Administrador");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -21,7 +20,7 @@ module.exports = {
     const salt = await bcrypt.genSalt(10);
     const senhaCriptografada = await bcrypt.hash(senha, salt);
 
-    const administradorCadastrado = await Adminsitrador.findOne({
+    const administradorCadastrado = await Administrador.findOne({
       email: req.body.email
     });
     if (administradorCadastrado)

@@ -33,7 +33,7 @@ routes.get("/loja", ProdutoController.getAll);
 routes.post("/cliente", ClienteController.store);
 routes.get("/cliente", ClienteController.getAll);
 routes.put("/cliente/:_id/:endereco", ClienteController.update);
-routes.post("/clienteId", ClienteController.getById);
+routes.get("/clienteId", ClienteController.getById);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
 
 routes.post("/relatorioEstoque", RelatorioController.estoquePdf);
@@ -43,12 +43,15 @@ routes.post("/relatorioFaturamento", RelatorioController.faturamentoPdf);
 routes.get("/getRelatorioFaturamento", RelatorioController.getFaturamentoPdf);
 
 routes.post("/pedido", PedidoController.store);
-routes.get("/pedido", PedidoController.getAll);
+routes.get("/pedido", Token, PedidoController.getAll);
 routes.delete("/pedidoId/:_id", PedidoController.deleteById);
+routes.put("/pedidoStatus", PedidoController.updateStatus);
+routes.get("/pedidoCliente", PedidoController.getAllId);
 
 routes.post("/Administrador", AdministradorController.store);
 
 routes.post("/sessao", SessaoController.login);
+routes.post("/sessaoADM", SessaoController.loginADM);
 
 routes.get("/sum", ProdutoController.sum);
 

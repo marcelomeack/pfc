@@ -99,7 +99,7 @@ module.exports = pedidos => {
 
                 <td>
                   Data: ${`${today.getDate()}. ${today.getMonth() + 1}.
-                  ${today.getFullYear()}.`}
+                  ${today.getFullYear()}`}
                 </td>
               </tr>
             </table>

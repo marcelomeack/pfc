@@ -113,18 +113,16 @@ module.exports = produtos => {
           <td>Mês:</td>
           <td>Faturamento:</td>
         </tr>
-        ${produtos.map(
-          produto => `
+        ${produtos
+          .map(
+            produto => `
         <tr class="item">
         <td>${today.getMonth() + 1}</td>
-        <ul className="produto-list">
-    </ul>
       <td>R$: ${produto.total},00</td>
       </tr>
-      <tr class="item">
-    </tr> 
     `
-        )}  
+          )
+          .join("")}  
       </table>
       <br />
     </div>

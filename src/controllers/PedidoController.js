@@ -70,5 +70,24 @@ module.exports = {
     } else {
       return res.json(pedido);
     }
+  },
+
+  async getRank(req, res) {
+    const pedido = await Pedido.aggregate([
+      { $unwind: "$itemPedidos" },
+      {
+        $group: {
+          _id: "$itemPedidos.nome",
+          total: {
+            $sum: {
+              $sum: ["$itemPedidos.quantidade"]
+            }
+          }
+        }
+      },
+      { $sort: { total: -1, posts: 1 } }
+    ]);
+
+    return res.json(pedido);
   }
 };

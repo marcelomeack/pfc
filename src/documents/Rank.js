@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
-module.exports = produtos => {
+module.exports = pedidos => {
   const today = new Date();
 
   return `
@@ -114,16 +114,16 @@ module.exports = produtos => {
           <td>Quantidade:</td>
         </tr>
      
-      ${produtos
+      ${pedidos
         .map(
-          produto => `
+          pedido => `
         <tr class="item">
-        <td>${produto.nome}</td>
-      <td>${produto.quantidade}</td>
+        <td>${pedido._id}</td>
+      <td>${pedido.total}</td>
       </tr>
     `
         )
-        .join("")}  
+        .join("")}     
       </table>
       <br />
     </div>

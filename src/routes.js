@@ -41,12 +41,15 @@ routes.get("/getRelatorioEstoque", RelatorioController.getEstoquePdf);
 routes.post("/pdfEmail", RelatorioController.sendEmail);
 routes.post("/relatorioFaturamento", RelatorioController.faturamentoPdf);
 routes.get("/getRelatorioFaturamento", RelatorioController.getFaturamentoPdf);
+routes.post("/relatorioRank", RelatorioController.rankPdf);
+routes.get("/getRelatorioRank", RelatorioController.getRankPdf);
 
 routes.post("/pedido", PedidoController.store);
 routes.get("/pedido", Token, PedidoController.getAll);
 routes.delete("/pedidoId/:_id", PedidoController.deleteById);
 routes.put("/pedidoStatus", PedidoController.updateStatus);
 routes.get("/pedidoCliente", PedidoController.getAllId);
+routes.get("/pedidoRank", PedidoController.getRank);
 
 routes.post("/Administrador", AdministradorController.store);
 

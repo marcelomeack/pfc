@@ -1,6 +1,7 @@
 const pdf = require("html-pdf");
 const estoquePdfTemplate = require("../documents/Estoque");
 const faturamentoPdfTemplate = require("../documents/Faturamento");
+const rankPdfTemplate = require("../documents/Rank");
 const mongoose = require("mongoose");
 const path = require("path");
 const Produto = require("../DAO/ProdutoDAO");
@@ -51,6 +52,34 @@ module.exports = {
 
   async getFaturamentoPdf(req, res) {
     res.sendFile(path.resolve(__dirname, "..", "..", "faturamento.pdf"));
+  },
+
+  async rankPdf(req, res) {
+    const pedidos = await Pedido.aggregate([
+      { $unwind: "$itemPedidos" },
+      {
+        $group: {
+          _id: "$itemPedidos.nome",
+          total: {
+            $sum: {
+              $sum: ["$itemPedidos.quantidade"]
+            }
+          }
+        }
+      },
+      { $sort: { total: -1, posts: 1 } }
+    ]);
+    pdf.create(rankPdfTemplate(pedidos), {}).toFile("rank.pdf", err => {
+      if (err) {
+        res.send(Promise.reject());
+      }
+
+      res.send(Promise.resolve());
+    });
+  },
+
+  async getRankPdf(req, res) {
+    res.sendFile(path.resolve(__dirname, "..", "..", "rank.pdf"));
   },
 
   async sendEmail(req, res) {

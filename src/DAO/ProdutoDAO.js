@@ -25,6 +25,18 @@ produtoSchema.statics = {
 
   getLess: function(query, cb) {
     this.find(query, cb);
+  },
+
+  updateQt: function(query, cb) {
+    this.findByIdAndUpdate(query, cb);
+  },
+
+  sum: function(query, cb) {
+    this.aggregate(query, cb);
+  },
+
+  getStore: function(query, cb) {
+    this.find(query, cb);
   }
 };
 

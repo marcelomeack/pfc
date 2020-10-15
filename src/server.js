@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use("/files", express.static(path.resolve(__dirname, "..", "uploads")));
 app.use(routes);
 
-cron.schedule("* * * 24 * *", async (req, res) => {
+cron.schedule("* * * 08 * *", async (req, res) => {
   const produtos = await Produto.find({ quantidade: { $lt: 4 } });
   await pdf
     .create(estoquePdfTemplate(produtos), {})

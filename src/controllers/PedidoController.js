@@ -1,5 +1,6 @@
 // const Cliente = require("../DAO/ClienteDAO");
 const Pedido = require("../models/Pedido");
+const Cliente = require("../models/Cliente");
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
@@ -30,7 +31,7 @@ module.exports = {
   },
 
   async getAll(req, res) {
-    const pedido = await Pedido.find({ pedido: Pedido });
+    const pedido = await Pedido.find({ pedido: Pedido }).populate("cliente");
 
     return res.json(pedido);
   },

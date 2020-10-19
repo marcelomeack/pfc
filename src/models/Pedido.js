@@ -10,11 +10,8 @@ const PedidoSchema = new mongoose.Schema({
   itemPedidos: [Produto],
   cliente: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Cliente"
+    ref: "ClienteSchema"
   },
-  nome: String,
-  email: String,
-  telefone: String,
   statusPedido: String
 });
 

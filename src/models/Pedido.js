@@ -12,7 +12,9 @@ const PedidoSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "ClienteSchema"
   },
-  statusPedido: String
+  statusPedido: String,
+  enderecoEntrega: String,
+  CEP: String
 });
 
 module.exports = mongoose.model("Pedido", PedidoSchema);

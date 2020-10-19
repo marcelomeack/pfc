@@ -11,10 +11,9 @@ module.exports = {
       dataPedido,
       valorTotal,
       itemPedidos,
-      nome,
-      email,
-      telefone,
-      statusPedido
+      statusPedido,
+      enderecoEntrega,
+      CEP
     } = req.body;
 
     const pedido = await Pedido.create({
@@ -22,10 +21,9 @@ module.exports = {
       valorTotal,
       itemPedidos,
       cliente: _id,
-      nome,
-      email,
-      telefone,
-      statusPedido
+      statusPedido,
+      enderecoEntrega,
+      CEP
     });
     return res.json(pedido);
   },

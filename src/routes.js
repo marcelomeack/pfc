@@ -16,16 +16,13 @@ const PedidoController = require("./controllers/PedidoController");
 routes.post("/endereco", EnderecoController.store);
 routes.get("/endereco", EnderecoController.getAll);
 routes.put("/endereco/:_id", EnderecoController.update);
-routes.get("/enderecoId", EnderecoController.getById);
 routes.delete("/enderecoId/:_id", EnderecoController.deleteById);
 
 routes.post("/produto", upload.single("thumbnail"), ProdutoController.store);
 routes.get("/produto", Token, ProdutoController.getAll);
 routes.put("/produto/:_id", ProdutoController.update);
 routes.put("/produtoQt", ProdutoController.updateQt);
-routes.get("/produtoId", ProdutoController.getById);
 routes.delete("/produtoId/:_id", ProdutoController.deleteById);
-routes.get("/produtoLess", ProdutoController.getLess);
 routes.get("/produtoLoja", ProdutoController.getStore);
 
 routes.get("/loja", ProdutoController.getAll);
@@ -33,7 +30,6 @@ routes.get("/loja", ProdutoController.getAll);
 routes.post("/cliente", ClienteController.store);
 routes.get("/cliente", ClienteController.getAll);
 routes.put("/cliente/:_id/:endereco", ClienteController.update);
-routes.get("/clienteId", ClienteController.getById);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
 
 routes.post("/relatorioEstoque", RelatorioController.estoquePdf);
@@ -49,13 +45,10 @@ routes.get("/pedido", Token, PedidoController.getAll);
 routes.delete("/pedidoId/:_id", PedidoController.deleteById);
 routes.put("/pedidoStatus", PedidoController.updateStatus);
 routes.get("/pedidoCliente", PedidoController.getAllId);
-routes.get("/pedidoRank", PedidoController.getRank);
 
 routes.post("/Administrador", AdministradorController.store);
 
 routes.post("/sessao", SessaoController.login);
 routes.post("/sessaoADM", SessaoController.loginADM);
-
-routes.get("/sum", ProdutoController.sum);
 
 module.exports = routes;

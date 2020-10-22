@@ -11,20 +11,12 @@ produtoSchema.statics = {
     this.find(query, cb);
   },
 
-  getById: function(query, cb) {
-    this.find(query, cb);
-  },
-
   update: function(query, updateData, cb) {
     this.findOneAndUpdate(query, { $set: updateData }, { new: true }, cb);
   },
 
   deleteById: function(query, cb) {
     this.findOneAndDelete(query, cb);
-  },
-
-  getLess: function(query, cb) {
-    this.find(query, cb);
   },
 
   updateQt: function(query, cb) {

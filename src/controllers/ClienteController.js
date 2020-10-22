@@ -38,15 +38,9 @@ module.exports = {
   },
 
   async getAll(req, res) {
-    const cliente = await Cliente.find({ cliente: Cliente });
-
-    return res.json(cliente);
-  },
-
-  async getById(req, res) {
-    const { email } = req.headers;
-
-    let cliente = await Cliente.findOne({ email: email });
+    const cliente = await Cliente.find({ cliente: Cliente }).populate(
+      "endereco"
+    );
 
     return res.json(cliente);
   },

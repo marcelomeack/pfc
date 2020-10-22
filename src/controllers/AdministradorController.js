@@ -47,14 +47,6 @@ module.exports = {
     return res.json(administrador);
   },
 
-  async getById(req, res) {
-    const { _id } = req.headers;
-
-    let administrador = await Administrador.findOne({ _id: _id });
-
-    return res.json(administrador);
-  },
-
   async deleteById(req, res) {
     const { _id } = req.params;
 

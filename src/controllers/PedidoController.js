@@ -41,14 +41,6 @@ module.exports = {
     return res.json(pedido);
   },
 
-  async getById(req, res) {
-    const { _id } = req.headers;
-
-    let pedido = await Pedido.findOne({ _id: _id });
-
-    return res.json(pedido);
-  },
-
   async deleteById(req, res) {
     const { _id } = req.params;
 
@@ -69,24 +61,5 @@ module.exports = {
     } else {
       return res.json(pedido);
     }
-  },
-
-  async getRank(req, res) {
-    const pedido = await Pedido.aggregate([
-      { $unwind: "$itemPedidos" },
-      {
-        $group: {
-          _id: "$itemPedidos.nome",
-          total: {
-            $sum: {
-              $sum: ["$itemPedidos.quantidade"]
-            }
-          }
-        }
-      },
-      { $sort: { total: -1, posts: 1 } }
-    ]);
-
-    return res.json(pedido);
   }
 };

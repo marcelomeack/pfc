@@ -15,10 +15,6 @@ pedidoSchema.statics = {
     this.find(query, cb);
   },
 
-  getById: function(query, cb) {
-    this.find(query, cb);
-  },
-
   updateStatus: function(query, updateData, cb) {
     this.findByIdAndUpdate(query, { $set: updateData }, { new: true }, cb);
   },

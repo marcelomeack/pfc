@@ -24,14 +24,6 @@ module.exports = {
     return res.json(endereco);
   },
 
-  async getById(req, res) {
-    const { _id } = req.headers;
-
-    await Endereco.findOne({ _id: _id });
-
-    return res.json(Endereco);
-  },
-
   async deleteById(req, res) {
     const { _id } = req.params;
 

@@ -23,20 +23,6 @@ module.exports = {
     return res.json(produto);
   },
 
-  async getById(req, res) {
-    const { _id } = req.headers;
-
-    let produto = await Produto.findOne({ _id: _id });
-
-    return res.json(produto);
-  },
-
-  async getLess(req, res) {
-    const produto = await Produto.find({ quantidade: { $lt: 4 } });
-
-    return res.json(produto);
-  },
-
   async getStore(req, res) {
     const produto = await Produto.find({ quantidade: { $gt: 0 } });
 
@@ -87,21 +73,5 @@ module.exports = {
     } else {
       return res.json(produto);
     }
-  },
-
-  async sum(req, res) {
-    const produto = await Produto.aggregate([
-      {
-        $group: {
-          _id: null,
-          total: {
-            $sum: {
-              $multiply: ["$valor", "$quantidade"]
-            }
-          }
-        }
-      }
-    ]);
-    return res.json(produto);
   }
 };

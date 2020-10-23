@@ -39,9 +39,9 @@ module.exports = {
     return res.json(administrador);
   },
 
-  async getAll(res) {
+  async getAll(req, res) {
     const administrador = await Administrador.find({
-      administrador: administrador
+      administrador: Administrador
     });
 
     return res.json(administrador);

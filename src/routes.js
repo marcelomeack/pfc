@@ -32,6 +32,11 @@ routes.get("/cliente", ClienteController.getAll);
 routes.put("/cliente/:_id/:endereco", ClienteController.update);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
 
+routes.post("/Administrador", AdministradorController.store);
+routes.get("/Administrador", AdministradorController.getAll);
+routes.put("/Administrador/:_id", AdministradorController.update);
+routes.delete("/AdministradorId/:_id", AdministradorController.deleteById);
+
 routes.post("/relatorioEstoque", RelatorioController.estoquePdf);
 routes.get("/getRelatorioEstoque", RelatorioController.getEstoquePdf);
 routes.post("/pdfEmail", RelatorioController.sendEmail);
@@ -45,8 +50,6 @@ routes.get("/pedido", Token, PedidoController.getAll);
 routes.delete("/pedidoId/:_id", PedidoController.deleteById);
 routes.put("/pedidoStatus", PedidoController.updateStatus);
 routes.get("/pedidoCliente", PedidoController.getAllId);
-
-routes.post("/Administrador", AdministradorController.store);
 
 routes.post("/sessao", SessaoController.login);
 routes.post("/sessaoADM", SessaoController.loginADM);

@@ -1,8 +1,6 @@
-// const Cliente = require("../DAO/ClienteDAO");
-const Cliente = require("../models/Cliente");
+const Cliente = require("../DAO/ClienteDAO");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 mongoose.set("useFindAndModify", false);
 
 module.exports = {
@@ -34,6 +32,14 @@ module.exports = {
       dataNascimento,
       senha: senhaCriptografada
     });
+    return res.json(cliente);
+  },
+
+  async getById(req, res) {
+    const { email } = req.headers;
+
+    let cliente = await Cliente.findOne({ email: email });
+
     return res.json(cliente);
   },
 

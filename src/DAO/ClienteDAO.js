@@ -3,12 +3,16 @@ const clienteSchema = require("../models/Cliente");
 
 clienteSchema.statics = {
   store: function(data, cb) {
-    const produto = new this(data);
-    produto.save(cb);
+    const cliente = new this(data);
+    cliente.save(cb);
   },
 
   getAll: function(query, cb) {
     this.find(query, cb);
+  },
+
+  getById: function(query, cb) {
+    this.findOne(query, cb);
   },
 
   update: function(query, updateData, cb) {
@@ -19,3 +23,5 @@ clienteSchema.statics = {
     this.findOneAndDelete(query, cb);
   }
 };
+
+module.exports = clienteSchema;

@@ -31,6 +31,7 @@ routes.post("/cliente", ClienteController.store);
 routes.get("/cliente", ClienteController.getAll);
 routes.put("/cliente/:_id/:endereco", ClienteController.update);
 routes.delete("/clienteId/:_id", ClienteController.deleteById);
+routes.get("/clienteId", ClienteController.getById);
 
 routes.post("/Administrador", AdministradorController.store);
 routes.get("/Administrador", AdministradorController.getAll);

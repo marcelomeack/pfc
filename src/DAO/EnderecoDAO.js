@@ -3,8 +3,8 @@ const enderecoSchema = require("../models/Endereco");
 
 enderecoSchema.statics = {
   store: function(data, cb) {
-    const produto = new this(data);
-    produto.save(cb);
+    const endereco = new this(data);
+    endereco.save(cb);
   },
 
   getAll: function(query, cb) {

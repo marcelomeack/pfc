@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const clienteSchema = require("../models/Cliente");
+const administradorSchema = require("../models/Administrador");
 
-clienteSchema.statics = {
+administradorSchema.statics = {
   store: function(data, cb) {
-    const produto = new this(data);
-    produto.save(cb);
+    const administrador = new this(data);
+    administrador.save(cb);
   },
 
   getAll: function(query, cb) {
@@ -19,3 +19,5 @@ clienteSchema.statics = {
     this.findOneAndDelete(query, cb);
   }
 };
+
+module.exports = administradorSchema;

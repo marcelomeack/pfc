@@ -3,8 +3,8 @@ const pedidoSchema = require("../models/Pedido");
 
 pedidoSchema.statics = {
   store: function(data, cb) {
-    const produto = new this(data);
-    produto.save(cb);
+    const pedido = new this(data);
+    pedido.save(cb);
   },
 
   getAll: function(query, cb) {
@@ -23,3 +23,5 @@ pedidoSchema.statics = {
     this.findByIdAndDelete(query, cb);
   }
 };
+
+module.exports = mongoose.model("Pedido", pedidoSchema);

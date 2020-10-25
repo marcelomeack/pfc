@@ -1,6 +1,4 @@
-// const Cliente = require("../DAO/ClienteDAO");
-const Pedido = require("../models/Pedido");
-const Cliente = require("../models/Cliente");
+const Pedido = require("../DAO/PedidoDAO");
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 

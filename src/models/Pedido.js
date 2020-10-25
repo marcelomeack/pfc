@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Produto = require("./Produto");
 
-const PedidoSchema = new mongoose.Schema({
+const pedidoSchema = new mongoose.Schema({
   dataPedido: {
     type: Date,
     default: Date.now
@@ -17,4 +17,4 @@ const PedidoSchema = new mongoose.Schema({
   CEP: String
 });
 
-module.exports = mongoose.model("Pedido", PedidoSchema);
+module.exports = pedidoSchema;

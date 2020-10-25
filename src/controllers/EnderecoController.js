@@ -1,7 +1,5 @@
 const Endereco = require("../DAO/EnderecoDAO");
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const Token = require("../Token");
 mongoose.set("useFindAndModify", false);
 
 module.exports = {

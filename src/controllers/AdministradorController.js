@@ -1,7 +1,6 @@
-const Administrador = require("../models/Administrador");
+const Administrador = require("../DAO/AdministradorDAO");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 mongoose.set("useFindAndModify", false);
 
 module.exports = {

@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Produto = require("../DAO/ProdutoDAO");
 const mailer = require("../services/mailer");
-const Pedido = require("../models/Pedido");
+const Pedido = require("../DAO/PedidoDAO");
 mongoose.set("useFindAndModify", false);
 
 module.exports = {

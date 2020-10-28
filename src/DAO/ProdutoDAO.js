@@ -23,8 +23,8 @@ produtoSchema.statics = {
     this.findByIdAndUpdate(query, cb);
   },
 
-  sum: function(query, cb) {
-    this.aggregate(query, cb);
+  estoquePdf: function(query, cb) {
+    this.find(query, Produto.find({ quantidade: { $lt: 4 } }));
   },
 
   getStore: function(query, cb) {

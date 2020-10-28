@@ -55,8 +55,14 @@ module.exports = {
     const { _id } = req.params;
 
     const cliente = await Cliente.findByIdAndDelete(_id, {});
+    const endereco = await Endereco.findByIdAndDelete({
+      _id: cliente.endereco
+    });
 
-    return res.json(cliente);
+    return res.json({
+      CLIENTE: cliente,
+      ENDERECO: endereco
+    });
   },
 
   async update(req, res) {

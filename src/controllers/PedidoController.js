@@ -59,5 +59,22 @@ module.exports = {
     } else {
       return res.json(pedido);
     }
+  },
+
+  async updateCliente(req, res) {
+    const { _id } = req.body;
+
+    const pedido = await Pedido.updateMany(
+      { cliente: _id },
+      {
+        cliente: "5f99e7c68d90ff17409744bb"
+      }
+    );
+
+    if (!pedido) {
+      return res.status(400).json({ error: "Pedido inexistente" });
+    } else {
+      return res.json(pedido);
+    }
   }
 };

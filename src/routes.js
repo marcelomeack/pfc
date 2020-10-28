@@ -51,6 +51,7 @@ routes.get("/pedido", Token, PedidoController.getAll);
 routes.delete("/pedidoId/:_id", PedidoController.deleteById);
 routes.put("/pedidoStatus", PedidoController.updateStatus);
 routes.get("/pedidoCliente", PedidoController.getAllId);
+routes.put("/pedidoCliente", PedidoController.updateCliente);
 
 routes.post("/sessao", SessaoController.login);
 routes.post("/sessaoADM", SessaoController.loginADM);

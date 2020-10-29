@@ -58,6 +58,10 @@ pedidoSchema.statics = {
         { $sort: { total: -1, posts: 1 } }
       ])
     );
+  },
+
+  updateCliente: function(query, cb) {
+    this.updaeManu(query, { $set: updateData }, { new: true }, cb);
   }
 };
 

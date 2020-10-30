@@ -4,6 +4,7 @@ const uploadConfig = require("./config/upload");
 const routes = express.Router();
 const upload = multer(uploadConfig);
 const Token = require("./Token");
+const tokenAutAdmin = require("./TokenAdmin");
 
 const EnderecoController = require("./controllers/EnderecoController");
 const ProdutoController = require("./controllers/ProdutoController");
@@ -18,25 +19,36 @@ routes.get("/endereco", EnderecoController.getAll);
 routes.put("/endereco/:_id", EnderecoController.update);
 routes.delete("/enderecoId/:_id", EnderecoController.deleteById);
 
-routes.post("/produto", upload.single("thumbnail"), ProdutoController.store);
-routes.get("/produto", Token, ProdutoController.getAll);
-routes.put("/produto/:_id", ProdutoController.update);
+routes.post(
+  "/produto",
+  tokenAutAdmin,
+  upload.single("thumbnail"),
+  ProdutoController.store
+);
+routes.get("/produto", tokenAutAdmin, ProdutoController.getAll);
+routes.put("/produto/:_id", tokenAutAdmin, ProdutoController.update);
 routes.put("/produtoQt", ProdutoController.updateQt);
-routes.delete("/produtoId/:_id", ProdutoController.deleteById);
+routes.delete("/produtoId/:_id", tokenAutAdmin, ProdutoController.deleteById);
 routes.get("/produtoLoja", ProdutoController.getStore);
 
-routes.get("/loja", ProdutoController.getAll);
-
 routes.post("/cliente", ClienteController.store);
-routes.get("/cliente", ClienteController.getAll);
+routes.get("/cliente", tokenAutAdmin, ClienteController.getAll);
 routes.put("/cliente/:_id/:endereco", ClienteController.update);
-routes.delete("/clienteId/:_id", ClienteController.deleteById);
+routes.delete("/clienteId/:_id", tokenAutAdmin, ClienteController.deleteById);
 routes.get("/clienteId", ClienteController.getById);
 
-routes.post("/Administrador", AdministradorController.store);
-routes.get("/Administrador", AdministradorController.getAll);
-routes.put("/Administrador/:_id", AdministradorController.update);
-routes.delete("/AdministradorId/:_id", AdministradorController.deleteById);
+routes.post("/Administrador", tokenAutAdmin, AdministradorController.store);
+routes.get("/Administrador", tokenAutAdmin, AdministradorController.getAll);
+routes.put(
+  "/Administrador/:_id",
+  tokenAutAdmin,
+  AdministradorController.update
+);
+routes.delete(
+  "/AdministradorId/:_id",
+  tokenAutAdmin,
+  AdministradorController.deleteById
+);
 
 routes.post("/relatorioEstoque", RelatorioController.estoquePdf);
 routes.get("/getRelatorioEstoque", RelatorioController.getEstoquePdf);
@@ -47,8 +59,8 @@ routes.post("/relatorioRank", RelatorioController.rankPdf);
 routes.get("/getRelatorioRank", RelatorioController.getRankPdf);
 
 routes.post("/pedido", PedidoController.store);
-routes.get("/pedido", Token, PedidoController.getAll);
-routes.delete("/pedidoId/:_id", PedidoController.deleteById);
+routes.get("/pedido", tokenAutAdmin, PedidoController.getAll);
+routes.delete("/pedidoId/:_id", tokenAutAdmin, PedidoController.deleteById);
 routes.put("/pedidoStatus", PedidoController.updateStatus);
 routes.get("/pedidoCliente", PedidoController.getAllId);
 routes.put("/pedidoCliente", PedidoController.updateCliente);

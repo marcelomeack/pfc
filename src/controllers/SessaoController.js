@@ -1,5 +1,5 @@
-const Cliente = require("../models/Cliente");
-const Administrador = require("../models/Administrador");
+const Cliente = require("../DAO/ClienteDAO");
+const Administrador = require("../DAO/AdministradorDAO");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -23,15 +23,15 @@ module.exports = {
     const { email, senha } = req.body;
 
     let validacao = await Administrador.findOne({ email: email });
-    if (!validacao) return res.status(400).send("Email não cadastrado");
+    if (!validacao) return res.status(400).send("Administrador não cadastrado");
 
     let senhaValida = await bcrypt.compare(senha, validacao.senha);
     if (!senhaValida) return res.status(400).send("Senha Incorreta");
 
-    const token = jwt.sign(
+    const tokenAutAdmin = jwt.sign(
       { _id: Administrador._id },
       process.env.TOKEN_SECRET
     );
-    res.header("tokenAut", token).send(token);
+    res.header("tokenAutAdmin", tokenAutAdmin).send(tokenAutAdmin);
   }
 };

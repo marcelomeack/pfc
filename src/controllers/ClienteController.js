@@ -68,15 +68,7 @@ module.exports = {
 
   async update(req, res) {
     const { _id } = req.params;
-    const {
-      nome,
-      cpf,
-      telefone,
-      sexo,
-      email,
-      dataNascimento,
-      senha
-    } = req.body;
+    const { nome, telefone, sexo, email, senha } = req.body;
 
     const salt = await bcrypt.genSalt(10);
     const senhaCriptografada = await bcrypt.hash(senha, salt);
@@ -85,11 +77,9 @@ module.exports = {
       _id,
       {
         nome,
-        cpf,
         telefone,
         sexo,
         email,
-        dataNascimento,
         senha: senhaCriptografada
       },
       { new: true }
